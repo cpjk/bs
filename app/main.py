@@ -68,16 +68,19 @@ def move_response():
 
 
 def test_left(board, snakes, food, our_snake):
-    return 100
+    mult = 1
+    if our_snake['coords'][0][0] == 0:
+        mult*=0
+    return 100 * mult
 
 def test_right(board, snakes, food, our_snake):
     return 0
 
 def test_down(board, snakes, food, our_snake):
-    return 0
+    return 90
 
 def test_up(board, snakes, food, our_snake):
-    return 0
+    return 80
 
 def find_our_snake(snakes):
     for snake in snakes:
