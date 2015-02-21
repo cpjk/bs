@@ -68,6 +68,7 @@ def move_response():
 
 
 def test_left(board, snakes, food, our_snake):
+    our_head = our_snake['coords'][0]
     mult = 1
     if our_snake['coords'][0][0] == 0:
         mult*=0
