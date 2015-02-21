@@ -7,6 +7,10 @@ ggame = {}
 gsnake_name = 'Dem Franchize Boyz'
 gtaunt = ''
 gboard_state = {}
+mults = {
+            'wall':0,
+            'snake_body':0
+        }
 
 @bottle.get('/')
 def index():
@@ -70,12 +74,16 @@ def move_response():
 def test_left(board, snakes, food, our_snake):
     our_head = our_snake['coords'][0]
     mult = 1
+
     if our_snake['coords'][0][0] == 0:
-        mult*=0
+        mult*=mults['wall']
+    # is there a snake ther
     return 100 * mult
 
 def test_right(board, snakes, food, our_snake):
-    return 0
+    if our_snake['coords'][0][0] == 0:
+        mult*=mults['wall']
+    return 
 
 def test_down(board, snakes, food, our_snake):
     return 90
