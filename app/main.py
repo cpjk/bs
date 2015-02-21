@@ -1,8 +1,12 @@
 import bottle
 import json
+import logging
+logging.basicConfig(filename='log.txt', format=logging.BASIC_FORMAT)
 
 ggame = {}
-taunt = ''
+gsnake_name = 'Dem Franchize Boyz'
+gtaunt = ''
+gboard_state = {}
 
 @bottle.get('/')
 def index():
@@ -15,11 +19,12 @@ def index():
 
 @bottle.post('/start')
 def start():
+    global ggame
     data = bottle.request.json
-    game = data
+    ggame = data
 
     return json.dumps({
-        'name': 'Dem Franchize Boyz',
+        'name': gsnake_name,
         'color': '#00ff00',
         'head_url': 'https://38.media.tumblr.com/tumblr_lzkctzyiTv1qfea58o1_500.gif',
         'taunt': 'My life for Auir!'
@@ -28,7 +33,10 @@ def start():
 
 @bottle.post('/move')
 def move():
-    data = bottle.request.json
+    global gboard_state
+    gboard_state = bottle.request.json
+    logging.error(gboard_state['board'][0])
+    logging.error('\n\n\n')
 
     return json.dumps({
         'move': move_response(),
@@ -43,28 +51,38 @@ def end():
     return json.dumps({})
 
 def move_response():
-    moves = { 'left': test_left(),
-            'right': test_right(),
-            'up': test_up(),
-            'down': test_down() }
+    global gboard_state
+    board = gboard_state['board']
+    snakes = gboard_state['snakes']
+    food = gboard_state['food']
+    our_snake = find_our_snake(snakes)
+
+    moves = { 'left': test_left(board, snakes, food, our_snake),
+            'right': test_right(board, snakes, food, our_snake),
+            'up': test_up(board, snakes, food, our_snake),
+            'down': test_down(board, snakes, food, our_snake) }
 
     best_move =  sorted(moves.items(), key = lambda t: t[1], reverse=True)[0][0]
+
     return best_move
 
 
-def test_left():
+def test_left(board, snakes, food, our_snake):
     return 100
 
-def test_right():
+def test_right(board, snakes, food, our_snake):
     return 0
 
-def test_down():
+def test_down(board, snakes, food, our_snake):
     return 0
 
-def test_up():
+def test_up(board, snakes, food, our_snake):
     return 0
 
-
+def find_our_snake(snakes):
+    for snake in snakes:
+        if snake['name'] == gsnake_name:
+            return snake
 
 # Expose WSGI app
 application = bottle.default_app()
