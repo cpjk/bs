@@ -1,7 +1,8 @@
 import bottle
 import json
 
-game = {}
+ggame = {}
+taunt = ''
 
 @bottle.get('/')
 def index():
@@ -31,7 +32,7 @@ def move():
 
     return json.dumps({
         'move': move_response(),
-        'taunt': 'die!'
+        'taunt': move_response()
     })
 
 
@@ -42,11 +43,11 @@ def end():
     return json.dumps({})
 
 def move_response():
-    moves = {'left': test_left,
-            'right': test_right,
-            'up': test_up,
-            'down': test_down
-            }
+    moves = { 'left': test_left(),
+            'right': test_right(),
+            'up': test_up(),
+            'down': test_down() }
+
     best_move =  sorted(moves.items(), key = lambda t: t[1], reverse=True)[0][0]
     return best_move
 
