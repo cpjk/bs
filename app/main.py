@@ -179,7 +179,8 @@ def populateBlockers(snakes):
 
 
 def is_bad(coords, board):
-    return board[coords[0]][coords[1]]['state'] != 'empty'
+    bad_states = ['head', 'body']
+    return board[coords[0]][coords[1]]['state'] in bad_states
 
 # Expose WSGI app
 application = bottle.default_app()
