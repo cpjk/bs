@@ -6,6 +6,7 @@ logging.basicConfig(filename='log.txt', format=logging.BASIC_FORMAT)
 ggame = {}
 gsnake_name = 'Dem Franchize Boyz'
 gtaunt = ''
+gblockers = []
 gboard_state = {}
 gmults = {
             'wall':0,
@@ -42,6 +43,7 @@ def move():
     gboard_state = bottle.request.json
     logging.error(gboard_state['board'][0])
     logging.error('\n\n\n')
+    populateBlockers(gboard_state['snakes'])
 
     return json.dumps({
         'move': move_response(),
@@ -137,6 +139,12 @@ def find_our_snake(snakes):
     for snake in snakes:
         if snake['name'] == gsnake_name:
             return snake
+
+def populateBlockers(snakes):
+    for snake in snakes:
+        for coord in snake["coords"]:
+            gblockers.append(coord)
+        
 
 # Expose WSGI app
 application = bottle.default_app()
