@@ -73,23 +73,34 @@ def move_response():
 
 def test_left(board, snakes, food, our_snake):
     our_head = our_snake['coords'][0]
+    print(our_head)
     mult = 1
 
-    if our_snake['coords'][0][0] == 0:
+    if our_head[0] == 0:
         mult*=mults['wall']
     # is there a snake ther
     return 100 * mult
 
 def test_right(board, snakes, food, our_snake):
-    if our_snake['coords'][0][0] == 0:
+    our_head = our_snake['coords'][0]
+    mult = 1
+    if our_head[0] == ggame['width'] - 1:
         mult*=mults['wall']
-    return 
+    return 100 * mult 
 
 def test_down(board, snakes, food, our_snake):
-    return 90
+    our_head = our_snake['coords'][0]
+    mult = 1
+    if our_head[1] == ggame['height'] - 1:
+        mult*=mults['wall']
+    return 100 * mult
 
 def test_up(board, snakes, food, our_snake):
-    return 80
+    our_head = our_snake['coords'][0]
+    mult = 1
+    if our_head[1] == 0:
+        mult *= mults['wall']
+    return 100 * mult 
 
 def find_our_snake(snakes):
     for snake in snakes:
