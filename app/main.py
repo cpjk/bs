@@ -16,10 +16,10 @@ def start():
     data = bottle.request.json
 
     return json.dumps({
-        'name': 'battlesnake-python',
+        'name': 'Dem Franchize Boyz',
         'color': '#00ff00',
-        'head_url': 'http://battlesnake-python.herokuapp.com',
-        'taunt': 'battlesnake-python!'
+        'head_url': 'https://glacial-escarpment-3430.herokuapp.com/',
+        'taunt': 'My life for Auir!'
     })
 
 
@@ -29,7 +29,7 @@ def move():
 
     return json.dumps({
         'move': 'left',
-        'taunt': 'battlesnake-python!'
+        'taunt': ''
     })
 
 
@@ -39,6 +39,8 @@ def end():
 
     return json.dumps({})
 
+def move_response
+    pass
 
 # Expose WSGI app
 application = bottle.default_app()
