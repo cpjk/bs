@@ -1,11 +1,5 @@
 ## battlesnake-python
 
-A simple [BattleSnake AI](http://battlesnake.io) written in Python. Available live at [battlesnake-python.herokuapp.com](http://battlesnake-python.herokuapp.com).
-
-To get started you'll need a working Python 2.7.6+ development environment and should be familiar with [deploying Python apps to Heroku](https://devcenter.heroku.com/articles/getting-started-with-python#introduction).
-
-If you don't have a Python environment setup, we suggest [starting here](http://hackercodex.com/guide/python-development-environment-on-mac-osx/). You'll need [pip](https://pip.pypa.io/en/latest/installing.html) and [virtualenv](https://virtualenv.pypa.io/en/latest/) for dependency management. We also suggest using [virtualenvwrapper](https://virtualenvwrapper.readthedocs.org/en/latest/).
-
 This AI client uses the [bottle web framework](http://bottlepy.org/docs/dev/index.html) for route management and response building, and the [gunicorn web server](http://gunicorn.org/) for running bottle on Heroku.
 
 Dependencies are listed in [requirements.txt](requirements.txt).
@@ -14,11 +8,7 @@ Dependencies are listed in [requirements.txt](requirements.txt).
 
 ### Running the AI locally
 
-Fork and clone this repo:
-```
-> git clone git@github.com:sendwithus/battlesnake-python.git
-> cd battlesnake-python
-```
+Clone this repo
 
 Create new virtualenv (using virtualenvwrapper) and install dependencies:
 ```
@@ -60,7 +50,3 @@ You can also view liveserver logs with the heroku logs command:
 ```
 heroku logs --tail
 ```
-
-### Questions?
-
-[Email](mailto:battlesnake@sendwithus.com), [Twitter](http://twitter.com/send_with_us)
